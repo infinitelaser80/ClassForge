@@ -125,13 +125,11 @@ const CLASSFORGE_MODEL_PHOTOS={
 if(db && Array.isArray(db.rewards)){
   db.rewards.forEach(p=>{
     if(CLASSFORGE_MODEL_PHOTOS[p.id]) p.imageUrl=CLASSFORGE_MODEL_PHOTOS[p.id];
-    // Correct the older placeholder gear link to the real MakerWorld listing we use.
     if(p.id==="mw-gear-fidget" && (!p.makerworld || p.makerworld.includes("/1550485-"))){
       p.makerworld="https://makerworld.com/en/models/95750-gear-fidget-toy-beveled-gears-fidget-spinner";
     }
   });
 }
-// v3 migration: make the entire reward catalog visible and remove the old commercial-license gate.
 if(db && Array.isArray(db.rewards)){
   db.rewards.forEach(p=>{ p.active=true; if("licenseChecked" in p) delete p.licenseChecked; });
   try{ localStorage.setItem(KEY,JSON.stringify(db)); }catch(e){}
