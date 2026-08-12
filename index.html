@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c111b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ClassForge">
+
+<link rel="manifest" href="manifest.webmanifest"><title>ClassForge Rewards</title>
+<style>
+:root{--bg:#0b0f17;--p:#131a27;--p2:#1a2434;--line:#2b3850;--txt:#f6f8fb;--muted:#9ba9bb;--cyan:#66dcff;--green:#6ee7a7;--amber:#ffd166;--red:#ff7474;--shadow:0 10px 35px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}body{padding-bottom:82px}
+button,input,select,textarea{font:inherit}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.strong{font-weight:900}
+header{padding:calc(16px + env(safe-area-inset-top)) 16px 14px;background:linear-gradient(135deg,#101828,#17243a);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand h1{font-size:21px;margin:0}.brand .tag{font-size:12px;color:var(--muted);margin-top:3px}
+.btn{border:0;border-radius:12px;background:var(--cyan);color:#041019;font-weight:900;padding:10px 13px;cursor:pointer}.btn.secondary{background:#26334a;color:var(--txt)}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}.btn.danger{background:#421f29;color:#ffd8df}.btn:disabled{opacity:.42;cursor:not-allowed}.btn.sm{font-size:12px;padding:7px 9px;border-radius:9px}
+main{max-width:1200px;margin:auto;padding:14px}.view{display:none}.view.active{display:block}
+.card{background:var(--p);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);margin-bottom:12px}.card h2,.card h3{margin:0 0 8px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}.stat{background:var(--p);border:1px solid var(--line);border-radius:16px;padding:13px}.stat b{font-size:25px;display:block;margin-top:4px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}.grow{flex:1}.grid{display:grid;gap:10px}.students{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.student{background:var(--p2);border:1px solid var(--line);border-radius:16px;padding:12px}.student h3{margin:0}.balance{font-size:22px;font-weight:950;margin:5px 0}.bar{height:10px;border-radius:99px;background:#070b11;overflow:hidden;margin:7px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,#43c8ff,#88e7ff)}
+.pills{display:flex;flex-wrap:wrap;gap:5px}.pill{border:1px solid var(--line);border-radius:99px;padding:4px 7px;font-size:11px}.good{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}.reward{background:var(--p);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}.rewardHero{height:130px;background:radial-gradient(circle at 35% 30%,#2d496c,#101724 72%);display:flex;align-items:center;justify-content:center;font-size:62px}.rewardBody{padding:13px}.reward h3{margin:2px 0 5px}.price{font-size:24px;font-weight:950;margin:7px 0}.limited{position:absolute;right:9px;top:9px;padding:5px 8px;background:#7a263c;border-radius:99px;font-size:10px;font-weight:900}.mw{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:#9fe8ff;font-size:12px;font-weight:800}.mw:after{content:"↗"}
+label{display:block;color:#dce5f1;font-size:13px;margin:10px 0}input,select,textarea{width:100%;margin-top:5px;padding:11px 12px;background:#0b111b;color:var(--txt);border:1px solid var(--line);border-radius:11px}input[type=checkbox]{width:auto;margin-right:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 6px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:10px;color:var(--muted);text-transform:uppercase}
+.scroll{overflow:auto}.notice{background:#14263b;border:1px solid #285577;border-radius:14px;padding:12px;margin:10px 0}.privacy{background:#15281f;border-color:#2e6046}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(10,14,22,.97);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 6px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}
+nav button{background:transparent;border:0;color:#8190a4;padding:7px 2px;font-size:10px;font-weight:800}nav button span{display:block;font-size:20px;margin-bottom:2px}nav button.active{color:var(--cyan)}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--p);color:var(--txt);width:min(92vw,580px);max-height:86vh;overflow:auto;padding:0}dialog::backdrop{background:rgba(0,0,0,.7)}.modal{padding:15px}.modalFooter{display:flex;justify-content:flex-end;gap:8px;padding-top:12px}
+.toolbar{display:flex;gap:7px;overflow:auto;padding-bottom:4px}.toolbar .btn{white-space:nowrap}
+.challenge{border-left:4px solid var(--amber)}
+.installTip{font-size:13px;line-height:1.45}
+@media(min-width:800px){.stats{grid-template-columns:repeat(4,1fr)}body{padding-bottom:0}nav{position:sticky;top:78px;bottom:auto;max-width:1200px;margin:auto;border:1px solid var(--line);border-radius:14px;grid-template-columns:repeat(5,1fr);padding:6px}nav button{font-size:12px}nav button span{display:inline;margin-right:6px;font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div><h1>🔥 ClassForge Rewards</h1><div class="tag">Middle-school rewards + 3D print shop</div></div><button class="btn secondary sm" id="studentMode">Student Shop</button></div>
+</header>
+
+<nav id="nav">
+ <button data-view="home" class="active"><span>🏠</span>Home</button>
+ <button data-view="students"><span>👥</span>Students</button>
+ <button data-view="shop"><span>🛍️</span>Shop</button>
+ <button data-view="queue"><span>🖨️</span>Prints</button>
+ <button data-view="more"><span>⚙️</span>More</button>
+</nav>
+
+<main>
+<section id="home" class="view active">
+ <div id="stats" class="stats"></div>
+ <div class="card">
+  <div class="row between"><div><h2>Quick Award</h2><div class="muted small">Two taps while teaching.</div></div><select id="quickClass" style="width:auto;margin:0"></select></div>
+  <div id="quickRules" class="toolbar" style="margin-top:10px"></div>
+  <div id="quickStudents" class="grid students" style="margin-top:10px"></div>
+ </div>
+ <div class="card challenge"><h2>⚡ Active Challenge</h2><div id="challengeHome"></div></div>
+</section>
+
+<section id="students" class="view">
+ <div class="card"><div class="row between"><div><h2>Students</h2><div class="muted small">Use first name + last initial or an alias if your district prefers data minimization.</div></div><button class="btn sm" id="addStudent">+ Student</button></div><div id="studentTable" class="scroll"></div></div>
+</section>
+
+<section id="shop" class="view">
+ <div class="card"><div class="row between"><div><h2>Reward Shop</h2><div class="muted small">All catalog items are available as classroom rewards. Credit prices are editable; MakerWorld links open the original model listing.</div></div><button class="btn sm" id="addReward">+ Reward</button></div>
+ <div class="notice privacy" style="margin-top:10px">
+<b>🎁 Classroom reward catalog</b>
+<div class="small" style="margin-top:5px">
+These prints are being used as free student rewards, not sold. Every MakerWorld item remains linked to its original creator/model page.
+</div>
+</div>
+<div class="toolbar" style="margin-top:10px"><button class="btn secondary sm filter active" data-filter="All">All</button><button class="btn secondary sm filter" data-filter="Flexi">Flexi</button><button class="btn secondary sm filter" data-filter="Fidget">Fidget</button><button class="btn secondary sm filter" data-filter="Custom">Custom</button><button class="btn secondary sm filter" data-filter="Legendary">Legendary</button></div>
+ <div id="shopGrid" class="shop" style="margin-top:12px"></div></div>
+</section>
+
+<section id="queue" class="view">
+ <div class="card"><div class="row between"><div><h2>Print Queue</h2><div class="muted small">Queued → Printing → Ready → Delivered</div></div><button class="btn secondary sm" id="clearDelivered">Clear Delivered</button></div><div id="queueList" class="scroll"></div></div>
+</section>
+
+<section id="more" class="view">
+ <div class="card"><h2>Challenges & Bounties</h2><div id="challengeList"></div><button class="btn sm" id="addChallenge">+ Challenge</button></div>
+ <div class="card"><h2>Transaction Ledger</h2><input id="ledgerSearch" placeholder="Search student or reason"><div id="ledger" class="scroll"></div></div>
+ <div class="card"><h2>Settings & Privacy</h2>
+  <div class="notice privacy"><b>🔐 Local-first mode</b><div class="small" style="margin-top:5px">Student records are stored in this browser on this device. ClassForge does not upload them anywhere in this build. MakerWorld links are public model links and contain no student data. Student names, balances, XP, challenges, and redemptions stay in this browser in the local-first build.</div></div>
+  <label>Teacher display name<input id="teacherName"></label>
+  <label>Credit name<input id="creditName"></label>
+  <label>Class XP goal<input id="goal" type="number"></label>
+  <label>Teacher PIN<input id="pin" inputmode="numeric" maxlength="8"></label>
+  <label><input type="checkbox" id="deductions">Allow negative-credit consequences</label>
+  <button class="btn" id="saveSettings">Save Settings</button>
+  <div class="row" style="margin-top:10px"><button class="btn secondary" id="backup">Export Backup</button><label class="btn secondary" style="margin:0">Restore<input id="restore" type="file" accept=".json" style="display:none"></label></div>
+ </div>
+ <div class="card"><h2>Install on iPhone</h2><div class="installTip">The standalone file works immediately on iPhone. For a true Home Screen app with its own icon and full-screen launch, put the PWA folder on an HTTPS website, open it in Safari, then tap <b>Share → Add to Home Screen</b>. Your classroom data can still remain local to that phone/browser.</div></div>
+</section>
+</main>
+
+<dialog id="modal"><form id="modalForm"><div class="modal" id="modalBody"></div></form></dialog>
+<dialog id="studentShopDialog"><div class="modal"><div class="row between"><h2>🛍️ Student Shop</h2><button class="btn secondary sm" onclick="document.getElementById('studentShopDialog').close()">Close</button></div><label>Student<select id="studentSelect"></select></label><div id="studentProfile"></div><div class="notice"><b>Everything below is available to earn.</b><div class="small muted">Items can still require enough credits/XP, be temporarily out of stock, or be limited drops.</div></div><div id="studentShopGrid" class="shop"></div></div></dialog>
+
+<script>
+const MW_SEED = [{"id": "mw-crystal-dragon", "name": "Articulated Crystal Dragon", "category": "Flexi", "credits": 180, "stock": 4, "level": 4, "makerworld": "https://makerworld.com/en/models/55289-articulated-crystal-dragon-by-saber3d", "sourceNote": "MakerWorld model by Saber3D", "imageLabel": "\ud83d\udc09", "printMin": 110, "grams": 45, "material": "PLA", "cost": 0.9, "limited": true, "customizable": true}, {"id": "mw-water-dragon", "name": "Water Dragon", "category": "Flexi", "credits": 200, "stock": 3, "level": 5, "makerworld": "https://makerworld.com/en/models/450835-water-dragon-articulated-dragon", "sourceNote": "MakerWorld articulated dragon", "imageLabel": "\ud83d\udc32", "printMin": 125, "grams": 52, "material": "PLA", "cost": 1.04, "limited": true, "customizable": true}, {"id": "mw-shark", "name": "Articulated Shark", "category": "Flexi", "credits": 90, "stock": 8, "level": 2, "makerworld": "https://makerworld.com/en/models/463778-articulated-shark", "sourceNote": "MakerWorld model by mcgybeer", "imageLabel": "\ud83e\udd88", "printMin": 48, "grams": 21, "material": "PLA", "cost": 0.42, "limited": false, "customizable": true}, {"id": "mw-shark-cute", "name": "Cute Tiny Shark + Hammerhead", "category": "Flexi", "credits": 60, "stock": 12, "level": 1, "makerworld": "https://makerworld.com/en/models/1095723-cute-tiny-articulated-shark-hammerhead-shark", "sourceNote": "MakerWorld tiny articulated shark set", "imageLabel": "\ud83e\udd88", "printMin": 28, "grams": 12, "material": "PLA", "cost": 0.24, "limited": false, "customizable": true}, {"id": "mw-gear-fidget", "name": "Gear Fidget Toy", "category": "Fidget", "credits": 75, "stock": 10, "level": 2, "makerworld": "https://makerworld.com/en/models/1550485-gear-fidget-toy", "sourceNote": "MakerWorld gear fidget", "imageLabel": "\u2699\ufe0f", "printMin": 35, "grams": 16, "material": "PLA", "cost": 0.32, "limited": false, "customizable": true}, {"id": "mw-planetary", "name": "Planetary Gear Finger Fidget", "category": "Fidget", "credits": 85, "stock": 8, "level": 2, "makerworld": "https://makerworld.com/en/models/654785-planetary-gears-finger-fidget-spinners", "sourceNote": "MakerWorld print-in-place fidget", "imageLabel": "\ud83c\udf00", "printMin": 38, "grams": 18, "material": "PLA", "cost": 0.36, "limited": false, "customizable": true}, {"id": "custom-name", "name": "Custom Name Tag", "category": "Custom", "credits": 100, "stock": 99, "level": 2, "makerworld": "", "sourceNote": "Custom ClassForge reward", "imageLabel": "\ud83d\udd24", "printMin": 42, "grams": 18, "material": "PLA", "cost": 0.36, "limited": false, "customizable": true}, {"id": "maker-session", "name": "Design With The Maker", "category": "Legendary", "credits": 500, "stock": 2, "level": 8, "makerworld": "", "sourceNote": "Custom design session + print", "imageLabel": "\ud83c\udfc6", "printMin": 180, "grams": 70, "material": "PLA", "cost": 1.4, "limited": true, "customizable": true}];
+const KEY="classforge_phone_v2";
+const levels=["","Rookie","Builder","Maker","Crafter","Inventor","Engineer","Master","Legend"];
+const defaultData=()=>({
+ settings:{teacherName:"Mrs. Murray",creditName:"Forge Credits",goal:20000,pin:"2468",deductions:false},
+ classes:[{id:"6",name:"6th Grade"},{id:"7",name:"7th Grade"},{id:"8",name:"8th Grade"}],
+ rules:[{id:"ready",name:"Ready",c:2,x:5},{id:"work",name:"Work Done",c:5,x:10},{id:"effort",name:"Great Effort",c:5,x:10},{id:"help",name:"Helped Someone",c:5,x:15},{id:"behavior",name:"Great Behavior",c:5,x:10},{id:"improve",name:"Improvement",c:15,x:25},{id:"perfect",name:"Perfect Week",c:25,x:50}],
+ students:[{id:"a",name:"Jayden",classId:"7",c:185,x:1240,streak:4},{id:"b",name:"Mia",classId:"7",c:95,x:760,streak:3},{id:"c",name:"Chris",classId:"7",c:240,x:1480,streak:5},{id:"d",name:"Aaliyah",classId:"8",c:70,x:620,streak:2}],
+ rewards:MW_SEED.map(x=>({...x,active:true})),
+ queue:[],ledger:[],
+ challenges:[{id:"ch1",title:"Locked In Week",description:"Turn in every assignment this week.",credits:30,xp:50,active:true,expires:"Friday"}]
+});
+let db;
+try{db=JSON.parse(localStorage.getItem(KEY))||defaultData()}catch(e){db=defaultData()}
+
+// v3 migration: make the entire reward catalog visible and remove the old commercial-license gate.
+if(db && Array.isArray(db.rewards)){
+  db.rewards.forEach(p=>{ p.active=true; if("licenseChecked" in p) delete p.licenseChecked; });
+  try{ localStorage.setItem(KEY,JSON.stringify(db)); }catch(e){}
+}
+let currentClass=db.classes[1]?.id||db.classes[0]?.id, quickRule=db.rules[4]?.id||db.rules[0]?.id, filter="All";
+const $=q=>document.querySelector(q), $$=q=>[...document.querySelectorAll(q)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=p=>p+Math.random().toString(36).slice(2,10);
+const lvl=x=>Math.max(1,Math.min(8,Math.floor((Number(x)||0)/250)+1));
+const prog=x=>lvl(x)>=8?100:Math.round(((Number(x)||0)%250)/250*100);
+const st=id=>db.students.find(x=>x.id===id), rw=id=>db.rewards.find(x=>x.id===id), cl=id=>db.classes.find(x=>x.id===id);
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function log(sid,c,x,reason,type="award"){const s=st(sid);db.ledger.unshift({id:uid("l"),at:new Date().toISOString(),sid,name:s?.name||"Unknown",c:Number(c)||0,x:Number(x)||0,reason,type})}
+function nav(v){$$(".view").forEach(x=>x.classList.toggle("active",x.id===v));$$("nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v));scrollTo(0,0)}
+$$("nav button").forEach(b=>b.addEventListener("click",()=>nav(b.dataset.view)));
+
+function render(){
+ $("#stats").innerHTML=[
+  ["Students",db.students.length],["Credits",db.students.reduce((a,s)=>a+s.c,0)],["Total XP",db.students.reduce((a,s)=>a+s.x,0)],["Prints Waiting",db.queue.filter(q=>q.status!=="Delivered").length]
+ ].map(([k,v])=>`<div class=stat><span class=muted>${esc(k)}</span><b>${Number(v).toLocaleString()}</b></div>`).join("");
+ $("#quickClass").innerHTML=db.classes.map(c=>`<option value="${c.id}" ${c.id===currentClass?"selected":""}>${esc(c.name)}</option>`).join("");
+ $("#quickRules").innerHTML=db.rules.map(r=>`<button class="btn sm ${r.id===quickRule?"":"secondary"}" data-rule="${r.id}">+${r.c} ${esc(r.name)}</button>`).join("");
+ $("#quickStudents").innerHTML=db.students.filter(s=>s.classId===currentClass).map(studentCard).join("")||`<div class=muted>No students here yet.</div>`;
+ const ch=db.challenges.find(c=>c.active);
+ $("#challengeHome").innerHTML=ch?`<b>${esc(ch.title)}</b><div>${esc(ch.description)}</div><div class="pills" style="margin-top:7px"><span class="pill good">+${ch.credits} credits</span><span class="pill">+${ch.xp} XP</span><span class="pill warn">Ends ${esc(ch.expires)}</span></div>`:`<div class=muted>No active challenge.</div>`;
+ $("#studentTable").innerHTML=`<table><thead><tr><th>Student</th><th>Class</th><th>Balance</th><th>Level</th><th></th></tr></thead><tbody>${db.students.map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${esc(cl(s.classId)?.name||"")}</td><td>${s.c}</td><td>Lv ${lvl(s.x)} ${levels[lvl(s.x)]}</td><td><button class="btn secondary sm editStudent" data-id="${s.id}">Edit</button></td></tr>`).join("")}</tbody></table>`;
+ renderShop(); renderQueue(); renderChallenges(); renderLedger(); renderSettings(); fillStudentSelect();
+ $$("#quickRules [data-rule]").forEach(b=>b.onclick=()=>{quickRule=b.dataset.rule;render()});
+ $$(".awardOne").forEach(b=>b.onclick=()=>award(b.dataset.id,quickRule));
+ $$(".editStudent").forEach(b=>b.onclick=()=>editStudent(b.dataset.id));
+}
+function studentCard(s){return `<div class=student><div class="row between"><h3>${esc(s.name)}</h3><span class=pill>Lv ${lvl(s.x)}</span></div><div class=balance>💰 ${s.c}</div><div class=bar><i style="width:${prog(s.x)}%"></i></div><div class="muted small">${s.x} XP • 🔥 ${s.streak||0} days</div><button class="btn sm awardOne" data-id="${s.id}" style="width:100%;margin-top:9px">Award ${esc(db.rules.find(r=>r.id===quickRule)?.name||"")}</button></div>`}
+function award(id,rid){const s=st(id),r=db.rules.find(x=>x.id===rid);if(!s||!r)return;s.c+=r.c;s.x+=r.x;log(id,r.c,r.x,r.name);persist()}
+function renderShop(){
+ const arr=db.rewards.filter(p=>p.active&&(filter==="All"||p.category===filter));
+ $("#shopGrid").innerHTML=arr.map(rewardCard).join("");
+ $$(".editReward").forEach(b=>b.onclick=()=>editReward(b.dataset.id));
+ $$(".giveFree").forEach(b=>b.onclick=()=>giveRewardFree(b.dataset.id));
+}
+function rewardCard(p){return `<div class=reward>${p.limited?'<div class=limited>LIMITED DROP</div>':""}<div class=rewardHero>${esc(p.imageLabel||"🎁")}</div><div class=rewardBody><div class="muted small">${esc(p.category)}</div><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class=pills><span class="${p.stock?"pill good":"pill bad"}">${p.stock?p.stock+" available":"SOLD OUT"}</span><span class=pill>Lv ${p.level}+</span>${p.customizable?'<span class=pill>Custom</span>':""}</div><div class="muted small" style="margin:8px 0">${p.printMin}m • ${p.grams}g • ${esc(p.material)} • est. $${Number(p.cost).toFixed(2)}</div>${p.makerworld?`<a class=mw href="${p.makerworld}" target="_blank" rel="noopener noreferrer">View actual model on MakerWorld</a>`:"<div class='muted small'>ClassForge custom reward</div>"}<div class="row" style="margin-top:9px"><button class="btn secondary sm editReward" data-id="${p.id}">Edit reward</button><button class="btn ghost sm giveFree" data-id="${p.id}">Give reward</button></div></div></div>`}
+function renderQueue(){
+ $("#queueList").innerHTML=db.queue.length?`<table><thead><tr><th>Student</th><th>Reward</th><th>Options</th><th>Status</th></tr></thead><tbody>${db.queue.slice().reverse().map(q=>`<tr><td>${esc(q.student)}</td><td>${esc(q.reward)}</td><td>${esc(q.custom||"—")}</td><td><select class=qstatus data-id="${q.id}">${["Queued","Printing","Ready","Delivered"].map(s=>`<option ${s===q.status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")}</tbody></table>`:`<div class=muted style="padding:12px 0">Nothing waiting to print.</div>`;
+ $$(".qstatus").forEach(x=>x.onchange=()=>{db.queue.find(q=>q.id===x.dataset.id).status=x.value;persist()})
+}
+function renderChallenges(){
+ $("#challengeList").innerHTML=db.challenges.map(c=>`<div class=notice><div class="row between"><b>${esc(c.title)}</b><button class="btn sm ${c.active?"secondary":"ghost"} toggleChallenge" data-id="${c.id}">${c.active?"Active":"Inactive"}</button></div><div>${esc(c.description)}</div><div class="small muted">+${c.credits} credits • +${c.xp} XP • ${esc(c.expires)}</div></div>`).join("");
+ $$(".toggleChallenge").forEach(b=>b.onclick=()=>{const c=db.challenges.find(x=>x.id===b.dataset.id);c.active=!c.active;persist()})
+}
+function renderLedger(){
+ const q=($("#ledgerSearch").value||"").toLowerCase(),arr=db.ledger.filter(x=>JSON.stringify(x).toLowerCase().includes(q));
+ $("#ledger").innerHTML=arr.length?`<table><thead><tr><th>Date</th><th>Student</th><th>Credits</th><th>XP</th><th>Reason</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${new Date(x.at).toLocaleDateString()}</td><td>${esc(x.name)}</td><td class="${x.c<0?"bad":"good"}">${x.c>0?"+":""}${x.c}</td><td>${x.x>0?"+":""}${x.x}</td><td>${esc(x.reason)}</td></tr>`).join("")}</tbody></table>`:`<div class=muted>No transactions yet.</div>`;
+}
+function renderSettings(){
+ $("#teacherName").value=db.settings.teacherName;$("#creditName").value=db.settings.creditName;$("#goal").value=db.settings.goal;$("#pin").value=db.settings.pin;$("#deductions").checked=db.settings.deductions;
+}
+function fillStudentSelect(){ $("#studentSelect").innerHTML=db.students.map(s=>`<option value="${s.id}">${esc(s.name)} — ${esc(cl(s.classId)?.name||"")}</option>`).join("") }
+function renderStudentShop(){
+ const s=st($("#studentSelect").value||db.students[0]?.id);if(!s)return;
+ $("#studentProfile").innerHTML=`<div class=notice><b style="font-size:22px">${esc(s.name)} • Lv ${lvl(s.x)} ${levels[lvl(s.x)]}</b><div class=price>💰 ${s.c} ${esc(db.settings.creditName)}</div><div class=bar><i style="width:${prog(s.x)}%"></i></div><div class="small muted">${s.x} XP • 🔥 ${s.streak||0} day streak</div></div>`;
+ $("#studentShopGrid").innerHTML=db.rewards.filter(p=>p.active).map(p=>{let locked=lvl(s.x)<p.level,poor=s.c<p.credits,sold=p.stock<=0;return `<div class=reward><div class=rewardHero>${esc(p.imageLabel)}</div><div class=rewardBody><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class="small muted">${p.stock} available • Level ${p.level}+</div><button class=btn style="width:100%;margin-top:8px" data-redeem="${p.id}" ${locked||poor||sold?"disabled":""}>${sold?"Sold Out":locked?"Locked":poor?"Save For It":"Redeem"}</button></div></div>`}).join("");
+ $$("[data-redeem]").forEach(b=>b.onclick=()=>redeem(s.id,b.dataset.redeem));
+}
+
+function giveRewardFree(rid){
+ const p=rw(rid); if(!p)return;
+ openForm("Give Reward",`<div class=notice><b>${esc(p.name)}</b><div class="small muted">Teacher-granted reward — no student credits are deducted.</div></div><label>Student<select name=sid>${db.students.map(s=>`<option value="${s.id}">${esc(s.name)} — ${esc(cl(s.classId)?.name||"")}</option>`).join("")}</select></label><label>Customization / colors<input name=custom placeholder="Optional"></label>`,"Add to Print Queue",fd=>{
+   const s=st(fd.get("sid")); if(!s)return false;
+   if(p.stock<=0 && !confirm("This item shows zero stock. Add it to the print queue anyway?"))return false;
+   if(p.stock>0 && p.stock<99)p.stock--;
+   log(s.id,0,0,`Teacher reward: ${p.name}`,"teacher reward");
+   db.queue.push({id:uid("q"),student:s.name,reward:p.name,custom:fd.get("custom")||"",status:"Queued",at:new Date().toISOString()});
+   persist();
+ });
+}
+function redeem(sid,rid){
+ const s=st(sid),p=rw(rid);if(!s||!p||s.c<p.credits||lvl(s.x)<p.level||p.stock<=0)return;
+ let custom=p.customizable?(prompt("Name / colors / customization (optional):","")||""):"";
+ if(!confirm(`Redeem ${p.name} for ${p.credits} credits?`))return;
+ s.c-=p.credits;if(p.stock<99)p.stock--;log(sid,-p.credits,0,`Redeemed: ${p.name}`,"redemption");
+ db.queue.push({id:uid("q"),student:s.name,reward:p.name,custom,status:"Queued",at:new Date().toISOString()});persist();renderStudentShop()
+}
+function openForm(title,body,saveText,onSave){
+ $("#modalBody").innerHTML=`<h2>${esc(title)}</h2>${body}<div class=modalFooter><button type=button class="btn secondary" id=cancelModal>Cancel</button><button class=btn type=submit>${esc(saveText||"Save")}</button></div>`;
+ $("#cancelModal").onclick=()=>$("#modal").close();$("#modalForm").onsubmit=e=>{e.preventDefault();if(onSave(new FormData(e.target))!==false)$("#modal").close()};$("#modal").showModal()
+}
+function addStudent(){
+ openForm("Add Student",`<label>Display name<input name=name required placeholder="First name + last initial"></label><label>Class<select name=classId>${db.classes.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("")}</select></label><label>Starting credits<input name=c type=number value=0></label><label>Starting XP<input name=x type=number value=0></label>`,"Add",fd=>{db.students.push({id:uid("s"),name:fd.get("name"),classId:fd.get("classId"),c:Number(fd.get("c")||0),x:Number(fd.get("x")||0),streak:0});persist()})
+}
+function editStudent(id){
+ const s=st(id);openForm("Edit Student",`<label>Display name<input name=name value="${esc(s.name)}"></label><label>Class<select name=classId>${db.classes.map(c=>`<option value="${c.id}" ${c.id===s.classId?"selected":""}>${esc(c.name)}</option>`).join("")}</select></label><label>Credits<input name=c type=number value="${s.c}"></label><label>XP<input name=x type=number value="${s.x}"></label><label>Streak<input name=streak type=number value="${s.streak||0}"></label>
+<label>Quick level<select name=quickLevel>
+<option value="">Keep current XP</option>
+${[1,2,3,4,5,6,7,8].map(n=>`<option value="${n}">Set to Level ${n} ${levels[n]}</option>`).join("")}
+</select></label>
+<label><input type=checkbox name=delete> Delete student</label>`,"Save",fd=>{if(fd.get("delete")){if(confirm("Delete student? Ledger history remains."))db.students=db.students.filter(x=>x.id!==id)}else{let ql=Number(fd.get("quickLevel")||0);Object.assign(s,{name:fd.get("name"),classId:fd.get("classId"),c:Number(fd.get("c")||0),x:ql?((ql-1)*250):Number(fd.get("x")||0),streak:Number(fd.get("streak")||0)})}persist()})
+}
+function rewardForm(p={}){
+ return `<label>Reward name<input name=name value="${esc(p.name||"")}" required></label><label>Category<select name=category>${["Flexi","Fidget","Custom","Legendary","Other"].map(x=>`<option ${p.category===x?"selected":""}>${x}</option>`).join("")}</select></label><label>MakerWorld URL<input name=makerworld value="${esc(p.makerworld||"")}" placeholder="https://makerworld.com/..."></label><div class=row><label class=grow>Credit price<input name=credits type=number value="${p.credits??50}"></label><label class=grow>Stock<input name=stock type=number value="${p.stock??5}"></label></div><div class=row><label class=grow>Min level<input name=level type=number min=1 max=8 value="${p.level??1}"></label><label class=grow>Emoji / icon<input name=imageLabel value="${esc(p.imageLabel||"🎁")}"></label></div><div class=row><label class=grow>Print minutes<input name=printMin type=number value="${p.printMin??30}"></label><label class=grow>Grams<input name=grams type=number value="${p.grams??10}"></label></div><label>Estimated material cost $<input name=cost type=number step=.01 value="${p.cost??0.2}"></label><label><input type=checkbox name=customizable ${p.customizable?"checked":""}> Customizable</label><label><input type=checkbox name=limited ${p.limited?"checked":""}> Limited drop</label><label><input type=checkbox name=active ${p.active!==false?"checked":""}> Active in shop</label>`
+}
+function rewardFields(fd){return {name:fd.get("name"),category:fd.get("category"),makerworld:fd.get("makerworld"),credits:Number(fd.get("credits")||0),stock:Number(fd.get("stock")||0),level:Number(fd.get("level")||1),imageLabel:fd.get("imageLabel")||"🎁",printMin:Number(fd.get("printMin")||0),grams:Number(fd.get("grams")||0),cost:Number(fd.get("cost")||0),material:"PLA",customizable:!!fd.get("customizable"),limited:!!fd.get("limited"),active:!!fd.get("active")}}
+function addReward(){openForm("Add Reward",rewardForm(),"Add",fd=>{db.rewards.push({id:uid("r"),...rewardFields(fd)});persist()})}
+function editReward(id){const p=rw(id);openForm("Edit Reward",rewardForm(p),"Save",fd=>{Object.assign(p,rewardFields(fd));persist()})}
+function addChallenge(){openForm("New Challenge",`<label>Title<input name=title required></label><label>Description<textarea name=description></textarea></label><label>Bonus credits<input name=credits type=number value=20></label><label>Bonus XP<input name=xp type=number value=30></label><label>Ends<input name=expires value="Friday"></label>`,"Add",fd=>{db.challenges.push({id:uid("ch"),title:fd.get("title"),description:fd.get("description"),credits:Number(fd.get("credits")||0),xp:Number(fd.get("xp")||0),expires:fd.get("expires"),active:true});persist()})}
+
+$("#quickClass").onchange=e=>{currentClass=e.target.value;render()};
+$("#addStudent").onclick=addStudent;$("#addReward").onclick=addReward;$("#addChallenge").onclick=addChallenge;
+$$(".filter").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;$$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderShop()});
+$("#clearDelivered").onclick=()=>{db.queue=db.queue.filter(q=>q.status!=="Delivered");persist()};
+$("#ledgerSearch").oninput=renderLedger;
+$("#studentMode").onclick=()=>{$("#studentShopDialog").showModal();fillStudentSelect();renderStudentShop()};
+$("#studentSelect").onchange=renderStudentShop;
+$("#saveSettings").onclick=()=>{db.settings.teacherName=$("#teacherName").value;db.settings.creditName=$("#creditName").value;db.settings.goal=Number($("#goal").value||0);db.settings.pin=$("#pin").value;db.settings.deductions=$("#deductions").checked;persist();alert("Settings saved.")};
+$("#backup").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:"application/json"}));a.download="ClassForge-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$("#restore").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);persist();alert("Backup restored.")}catch(err){alert("That file is not a valid ClassForge backup.")}};r.readAsText(f)};
+
+render();
+
+</script>
+</body></html>
