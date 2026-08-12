@@ -22,7 +22,7 @@ main{max-width:1200px;margin:auto;padding:14px}.view{display:none}.view.active{d
 .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}.grow{flex:1}.grid{display:grid;gap:10px}.students{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
 .student{background:var(--p2);border:1px solid var(--line);border-radius:16px;padding:12px}.student h3{margin:0}.balance{font-size:22px;font-weight:950;margin:5px 0}.bar{height:10px;border-radius:99px;background:#070b11;overflow:hidden;margin:7px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,#43c8ff,#88e7ff)}
 .pills{display:flex;flex-wrap:wrap;gap:5px}.pill{border:1px solid var(--line);border-radius:99px;padding:4px 7px;font-size:11px}.good{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}
-.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}.reward{background:var(--p);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}.rewardHero{height:130px;background:radial-gradient(circle at 35% 30%,#2d496c,#101724 72%);display:flex;align-items:center;justify-content:center;font-size:62px}.rewardBody{padding:13px}.reward h3{margin:2px 0 5px}.price{font-size:24px;font-weight:950;margin:7px 0}.limited{position:absolute;right:9px;top:9px;padding:5px 8px;background:#7a263c;border-radius:99px;font-size:10px;font-weight:900}.mw{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:#9fe8ff;font-size:12px;font-weight:800}.mw:after{content:"↗"}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}.reward{background:var(--p);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}.rewardHero{height:165px;background:radial-gradient(circle at 35% 30%,#2d496c,#101724 72%);display:flex;align-items:center;justify-content:center;font-size:62px;overflow:hidden}.rewardHero img{width:100%;height:100%;object-fit:cover;display:block}.rewardHero .fallbackIcon{font-size:62px}.rewardBody{padding:13px}.reward h3{margin:2px 0 5px}.price{font-size:24px;font-weight:950;margin:7px 0}.limited{position:absolute;right:9px;top:9px;padding:5px 8px;background:#7a263c;border-radius:99px;font-size:10px;font-weight:900}.mw{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:#9fe8ff;font-size:12px;font-weight:800}.mw:after{content:"↗"}
 label{display:block;color:#dce5f1;font-size:13px;margin:10px 0}input,select,textarea{width:100%;margin-top:5px;padding:11px 12px;background:#0b111b;color:var(--txt);border:1px solid var(--line);border-radius:11px}input[type=checkbox]{width:auto;margin-right:8px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 6px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:10px;color:var(--muted);text-transform:uppercase}
 .scroll{overflow:auto}.notice{background:#14263b;border:1px solid #285577;border-radius:14px;padding:12px;margin:10px 0}.privacy{background:#15281f;border-color:#2e6046}
@@ -64,11 +64,11 @@ dialog{border:1px solid var(--line);border-radius:18px;background:var(--p);color
 </section>
 
 <section id="shop" class="view">
- <div class="card"><div class="row between"><div><h2>Reward Shop</h2><div class="muted small">All catalog items are available as classroom rewards. Credit prices are editable; MakerWorld links open the original model listing.</div></div><button class="btn sm" id="addReward">+ Reward</button></div>
+ <div class="card"><div class="row between"><div><h2>Reward Shop</h2><div class="muted small">All catalog items are available as classroom rewards. Credit prices are editable; MakerWorld links open the original model listing.</div></div><div class="row"><button class="btn sm" id="addMakerWorld">+ From MakerWorld</button><button class="btn secondary sm" id="addReward">+ Manual</button></div></div>
  <div class="notice privacy" style="margin-top:10px">
 <b>🎁 Classroom reward catalog</b>
 <div class="small" style="margin-top:5px">
-These prints are being used as free student rewards, not sold. Every MakerWorld item remains linked to its original creator/model page.
+These prints are being used as free student rewards, not sold. Every MakerWorld item stays linked to its original creator/model page. ClassForge shows a visual preview in the shop, so students do not need to leave ClassForge.
 </div>
 </div>
 <div class="toolbar" style="margin-top:10px"><button class="btn secondary sm filter active" data-filter="All">All</button><button class="btn secondary sm filter" data-filter="Flexi">Flexi</button><button class="btn secondary sm filter" data-filter="Fidget">Fidget</button><button class="btn secondary sm filter" data-filter="Custom">Custom</button><button class="btn secondary sm filter" data-filter="Legendary">Legendary</button></div>
@@ -83,7 +83,7 @@ These prints are being used as free student rewards, not sold. Every MakerWorld 
  <div class="card"><h2>Challenges & Bounties</h2><div id="challengeList"></div><button class="btn sm" id="addChallenge">+ Challenge</button></div>
  <div class="card"><h2>Transaction Ledger</h2><input id="ledgerSearch" placeholder="Search student or reason"><div id="ledger" class="scroll"></div></div>
  <div class="card"><h2>Settings & Privacy</h2>
-  <div class="notice privacy"><b>🔐 Local-first mode</b><div class="small" style="margin-top:5px">Student records are stored in this browser on this device. ClassForge does not upload them anywhere in this build. MakerWorld links are public model links and contain no student data. Student names, balances, XP, challenges, and redemptions stay in this browser in the local-first build.</div></div>
+  <div class="notice privacy"><b>🔐 Local-first mode</b><div class="small" style="margin-top:5px">Student records are stored in this browser on this device. ClassForge does not upload them anywhere in this build. MakerWorld links are public model links and contain no student data. Shop previews are generated only from those public model URLs; student names, balances, XP, challenges, and redemptions stay in this browser in the local-first build.</div></div>
   <label>Teacher display name<input id="teacherName"></label>
   <label>Credit name<input id="creditName"></label>
   <label>Class XP goal<input id="goal" type="number"></label>
@@ -123,6 +123,30 @@ if(db && Array.isArray(db.rewards)){
 let currentClass=db.classes[1]?.id||db.classes[0]?.id, quickRule=db.rules[4]?.id||db.rules[0]?.id, filter="All";
 const $=q=>document.querySelector(q), $$=q=>[...document.querySelectorAll(q)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function makerworldPreview(url){
+  if(!url) return "";
+  return "https://image.thum.io/get/width/1000/crop/760/noanimate/" + encodeURIComponent(url);
+}
+function imageMarkup(p){
+  if(!p.makerworld) return `<span class="fallbackIcon">${esc(p.imageLabel||"🎁")}</span>`;
+  const u=makerworldPreview(p.makerworld);
+  return `<img src="${u}" alt="${esc(p.name)} MakerWorld preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="fallbackIcon" style="display:none">${esc(p.imageLabel||"🎁")}</span>`;
+}
+function nameFromMakerWorldUrl(url){
+  try{
+    const path=new URL(url).pathname;
+    const m=path.match(/\/models\/\d+(?:-([^/?#]+))?/);
+    if(!m || !m[1]) return "MakerWorld Reward";
+    return m[1].split("-").map(w=>w ? w[0].toUpperCase()+w.slice(1) : "").join(" ");
+  }catch(e){ return "MakerWorld Reward"; }
+}
+function validMakerWorldUrl(url){
+  try{
+    const u=new URL(url);
+    return /(^|\.)makerworld\.com$/i.test(u.hostname) && /\/models\/\d+/.test(u.pathname);
+  }catch(e){return false}
+}
 const uid=p=>p+Math.random().toString(36).slice(2,10);
 const lvl=x=>Math.max(1,Math.min(8,Math.floor((Number(x)||0)/250)+1));
 const prog=x=>lvl(x)>=8?100:Math.round(((Number(x)||0)%250)/250*100);
@@ -155,7 +179,7 @@ function renderShop(){
  $$(".editReward").forEach(b=>b.onclick=()=>editReward(b.dataset.id));
  $$(".giveFree").forEach(b=>b.onclick=()=>giveRewardFree(b.dataset.id));
 }
-function rewardCard(p){return `<div class=reward>${p.limited?'<div class=limited>LIMITED DROP</div>':""}<div class=rewardHero>${esc(p.imageLabel||"🎁")}</div><div class=rewardBody><div class="muted small">${esc(p.category)}</div><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class=pills><span class="${p.stock?"pill good":"pill bad"}">${p.stock?p.stock+" available":"SOLD OUT"}</span><span class=pill>Lv ${p.level}+</span>${p.customizable?'<span class=pill>Custom</span>':""}</div><div class="muted small" style="margin:8px 0">${p.printMin}m • ${p.grams}g • ${esc(p.material)} • est. $${Number(p.cost).toFixed(2)}</div>${p.makerworld?`<a class=mw href="${p.makerworld}" target="_blank" rel="noopener noreferrer">View actual model on MakerWorld</a>`:"<div class='muted small'>ClassForge custom reward</div>"}<div class="row" style="margin-top:9px"><button class="btn secondary sm editReward" data-id="${p.id}">Edit reward</button><button class="btn ghost sm giveFree" data-id="${p.id}">Give reward</button></div></div></div>`}
+function rewardCard(p){return `<div class=reward>${p.limited?'<div class=limited>LIMITED DROP</div>':""}<div class=rewardHero>${imageMarkup(p)}</div><div class=rewardBody><div class="muted small">${esc(p.category)}</div><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class=pills><span class="${p.stock?"pill good":"pill bad"}">${p.stock?p.stock+" available":"SOLD OUT"}</span><span class=pill>Lv ${p.level}+</span>${p.customizable?'<span class=pill>Custom</span>':""}</div><div class="muted small" style="margin:8px 0">${p.printMin}m • ${p.grams}g • ${esc(p.material)} • est. $${Number(p.cost).toFixed(2)}</div>${p.makerworld?`<a class=mw href="${p.makerworld}" target="_blank" rel="noopener noreferrer">View Model Details on MakerWorld</a>`:"<div class='muted small'>ClassForge custom reward</div>"}<div class="row" style="margin-top:9px"><button class="btn secondary sm editReward" data-id="${p.id}">Edit reward</button><button class="btn ghost sm giveFree" data-id="${p.id}">Give reward</button></div></div></div>`}
 function renderQueue(){
  $("#queueList").innerHTML=db.queue.length?`<table><thead><tr><th>Student</th><th>Reward</th><th>Options</th><th>Status</th></tr></thead><tbody>${db.queue.slice().reverse().map(q=>`<tr><td>${esc(q.student)}</td><td>${esc(q.reward)}</td><td>${esc(q.custom||"—")}</td><td><select class=qstatus data-id="${q.id}">${["Queued","Printing","Ready","Delivered"].map(s=>`<option ${s===q.status?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")}</tbody></table>`:`<div class=muted style="padding:12px 0">Nothing waiting to print.</div>`;
  $$(".qstatus").forEach(x=>x.onchange=()=>{db.queue.find(q=>q.id===x.dataset.id).status=x.value;persist()})
@@ -175,7 +199,7 @@ function fillStudentSelect(){ $("#studentSelect").innerHTML=db.students.map(s=>`
 function renderStudentShop(){
  const s=st($("#studentSelect").value||db.students[0]?.id);if(!s)return;
  $("#studentProfile").innerHTML=`<div class=notice><b style="font-size:22px">${esc(s.name)} • Lv ${lvl(s.x)} ${levels[lvl(s.x)]}</b><div class=price>💰 ${s.c} ${esc(db.settings.creditName)}</div><div class=bar><i style="width:${prog(s.x)}%"></i></div><div class="small muted">${s.x} XP • 🔥 ${s.streak||0} day streak</div></div>`;
- $("#studentShopGrid").innerHTML=db.rewards.filter(p=>p.active).map(p=>{let locked=lvl(s.x)<p.level,poor=s.c<p.credits,sold=p.stock<=0;return `<div class=reward><div class=rewardHero>${esc(p.imageLabel)}</div><div class=rewardBody><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class="small muted">${p.stock} available • Level ${p.level}+</div><button class=btn style="width:100%;margin-top:8px" data-redeem="${p.id}" ${locked||poor||sold?"disabled":""}>${sold?"Sold Out":locked?"Locked":poor?"Save For It":"Redeem"}</button></div></div>`}).join("");
+ $("#studentShopGrid").innerHTML=db.rewards.filter(p=>p.active).map(p=>{let locked=lvl(s.x)<p.level,poor=s.c<p.credits,sold=p.stock<=0;return `<div class=reward><div class=rewardHero>${imageMarkup(p)}</div><div class=rewardBody><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class="small muted">${p.stock} available • Level ${p.level}+</div><button class=btn style="width:100%;margin-top:8px" data-redeem="${p.id}" ${locked||poor||sold?"disabled":""}>${sold?"Sold Out":locked?"Locked":poor?"Save For It":"Redeem"}</button></div></div>`}).join("");
  $$("[data-redeem]").forEach(b=>b.onclick=()=>redeem(s.id,b.dataset.redeem));
 }
 
@@ -216,12 +240,27 @@ function rewardForm(p={}){
  return `<label>Reward name<input name=name value="${esc(p.name||"")}" required></label><label>Category<select name=category>${["Flexi","Fidget","Custom","Legendary","Other"].map(x=>`<option ${p.category===x?"selected":""}>${x}</option>`).join("")}</select></label><label>MakerWorld URL<input name=makerworld value="${esc(p.makerworld||"")}" placeholder="https://makerworld.com/..."></label><div class=row><label class=grow>Credit price<input name=credits type=number value="${p.credits??50}"></label><label class=grow>Stock<input name=stock type=number value="${p.stock??5}"></label></div><div class=row><label class=grow>Min level<input name=level type=number min=1 max=8 value="${p.level??1}"></label><label class=grow>Emoji / icon<input name=imageLabel value="${esc(p.imageLabel||"🎁")}"></label></div><div class=row><label class=grow>Print minutes<input name=printMin type=number value="${p.printMin??30}"></label><label class=grow>Grams<input name=grams type=number value="${p.grams??10}"></label></div><label>Estimated material cost $<input name=cost type=number step=.01 value="${p.cost??0.2}"></label><label><input type=checkbox name=customizable ${p.customizable?"checked":""}> Customizable</label><label><input type=checkbox name=limited ${p.limited?"checked":""}> Limited drop</label><label><input type=checkbox name=active ${p.active!==false?"checked":""}> Active in shop</label>`
 }
 function rewardFields(fd){return {name:fd.get("name"),category:fd.get("category"),makerworld:fd.get("makerworld"),credits:Number(fd.get("credits")||0),stock:Number(fd.get("stock")||0),level:Number(fd.get("level")||1),imageLabel:fd.get("imageLabel")||"🎁",printMin:Number(fd.get("printMin")||0),grams:Number(fd.get("grams")||0),cost:Number(fd.get("cost")||0),material:"PLA",customizable:!!fd.get("customizable"),limited:!!fd.get("limited"),active:!!fd.get("active")}}
+
+function addFromMakerWorld(){
+ openForm("Add From MakerWorld",`
+   <div class=notice><b>Paste a MakerWorld model URL</b><div class="small muted">ClassForge will create the in-shop visual preview automatically. Students can shop without opening MakerWorld.</div></div>
+   <label>MakerWorld URL<input name=makerworld required placeholder="https://makerworld.com/en/models/123456-model-name"></label>
+   <label>Classroom credit price<input name=credits type=number value="75"></label>
+   <label>Starting stock<input name=stock type=number value="5"></label>
+   <label>Minimum level<input name=level type=number min=1 max=8 value="1"></label>
+ `,"Continue",fd=>{
+   const url=String(fd.get("makerworld")||"").trim();
+   if(!validMakerWorldUrl(url)){alert("Paste a MakerWorld model URL containing /models/ followed by the model number.");return false}
+   const draft={name:nameFromMakerWorldUrl(url),category:"Other",makerworld:url,credits:Number(fd.get("credits")||75),stock:Number(fd.get("stock")||5),level:Number(fd.get("level")||1),imageLabel:"🎁",printMin:30,grams:10,cost:.20,material:"PLA",customizable:true,limited:false,active:true};
+   setTimeout(()=>openForm("Finish Reward",rewardForm(draft),"Add To Shop",fd2=>{db.rewards.push({id:uid("r"),...rewardFields(fd2)});persist();}),100);
+ });
+}
 function addReward(){openForm("Add Reward",rewardForm(),"Add",fd=>{db.rewards.push({id:uid("r"),...rewardFields(fd)});persist()})}
 function editReward(id){const p=rw(id);openForm("Edit Reward",rewardForm(p),"Save",fd=>{Object.assign(p,rewardFields(fd));persist()})}
 function addChallenge(){openForm("New Challenge",`<label>Title<input name=title required></label><label>Description<textarea name=description></textarea></label><label>Bonus credits<input name=credits type=number value=20></label><label>Bonus XP<input name=xp type=number value=30></label><label>Ends<input name=expires value="Friday"></label>`,"Add",fd=>{db.challenges.push({id:uid("ch"),title:fd.get("title"),description:fd.get("description"),credits:Number(fd.get("credits")||0),xp:Number(fd.get("xp")||0),expires:fd.get("expires"),active:true});persist()})}
 
 $("#quickClass").onchange=e=>{currentClass=e.target.value;render()};
-$("#addStudent").onclick=addStudent;$("#addReward").onclick=addReward;$("#addChallenge").onclick=addChallenge;
+$("#addStudent").onclick=addStudent;$("#addMakerWorld").onclick=addFromMakerWorld;$("#addReward").onclick=addReward;$("#addChallenge").onclick=addChallenge;
 $$(".filter").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;$$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderShop()});
 $("#clearDelivered").onclick=()=>{db.queue=db.queue.filter(q=>q.status!=="Delivered");persist()};
 $("#ledgerSearch").oninput=renderLedger;
