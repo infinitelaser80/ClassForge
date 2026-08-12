@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c111b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ClassForge">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>ClassForge Rewards</title>
+<style>
+:root{--bg:#0b0f17;--panel:#131a27;--panel2:#1a2434;--line:#2b3850;--text:#f6f8fb;--muted:#9ba9bb;--cyan:#66dcff;--green:#6ee7a7;--amber:#ffd166;--red:#ff7474;--violet:#b89cff;--shadow:0 10px 35px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}body{padding-bottom:88px}
+button,input,select,textarea{font:inherit}.muted{color:var(--muted)}.small{font-size:12px}.hidden{display:none!important}
+header{padding:calc(14px + env(safe-area-inset-top)) 14px 12px;background:linear-gradient(135deg,#101828,#17243a);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand h1{font-size:21px;margin:0}.tag{font-size:12px;color:var(--muted);margin-top:3px}
+.saveState{display:inline-flex;align-items:center;gap:5px;border:1px solid #285240;background:#132a21;color:var(--green);padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900}.saveState.saving{color:var(--amber);border-color:#5d5029;background:#272313}
+.btn{border:0;border-radius:12px;background:var(--cyan);color:#041019;font-weight:900;padding:10px 13px;cursor:pointer}.btn.secondary{background:#26334a;color:var(--text)}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.btn.danger{background:#421f29;color:#ffd8df}.btn.sm{font-size:12px;padding:7px 9px;border-radius:9px}.btn:disabled{opacity:.42;cursor:not-allowed}
+main{max-width:1250px;margin:auto;padding:13px}.view{display:none}.view.active{display:block}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);margin-bottom:12px}.card h2,.card h3{margin:0 0 8px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}.grow{flex:1}.grid{display:grid;gap:10px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px}.stat b{font-size:24px;display:block;margin-top:3px}
+.toolbar{display:flex;gap:7px;overflow:auto;padding:5px 0}.toolbar .btn{white-space:nowrap}
+.students{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px}.student{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:12px}.student h3{margin:0}.balance{font-size:22px;font-weight:950;margin:5px 0}
+.bar{height:10px;border-radius:99px;background:#070b11;overflow:hidden;margin:7px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,#43c8ff,#88e7ff)}
+.pills{display:flex;flex-wrap:wrap;gap:5px}.pill{border:1px solid var(--line);border-radius:99px;padding:4px 7px;font-size:11px}.good{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}.violet{color:var(--violet)}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px}.reward{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}.rewardHero{height:215px;background:radial-gradient(circle at 35% 30%,#2d496c,#101724 72%);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.rewardHero img{width:100%;height:100%;object-fit:cover;display:block}.fallbackIcon{font-size:65px}.rewardBody{padding:13px}.reward h3{margin:2px 0 5px}.price{font-size:24px;font-weight:950;margin:7px 0}
+.badge{position:absolute;top:9px;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;z-index:3}.badge.left{left:9px;background:#184b3a}.badge.right{right:9px;background:#7a263c}.badge.pod{right:9px;background:#463b78}.badge.hot{left:9px;background:#7a4a18}
+.mw{display:inline-flex;align-items:center;gap:5px;text-decoration:none;color:#9fe8ff;font-size:12px;font-weight:800}.mw:after{content:"↗"}
+.notice{background:#14263b;border:1px solid #285577;border-radius:14px;padding:12px;margin:10px 0}.privacy{background:#15281f;border-color:#2e6046}.boss{background:linear-gradient(135deg,#24172d,#151d2d);border-color:#583768}.bossHP{height:22px;background:#090b10;border-radius:999px;overflow:hidden;margin:10px 0;border:1px solid #44294d}.bossHP i{display:block;height:100%;background:linear-gradient(90deg,#ff6e7d,#d54bff);transition:width .35s}.bossNumber{font-weight:950;font-size:26px}
+.quest{border-left:4px solid var(--cyan)}.achievement{border-left:4px solid var(--violet)}
+label{display:block;color:#dce5f1;font-size:13px;margin:10px 0}input,select,textarea{width:100%;margin-top:5px;padding:11px 12px;background:#0b111b;color:var(--text);border:1px solid var(--line);border-radius:11px}input[type=checkbox]{width:auto;margin-right:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 6px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:10px;color:var(--muted);text-transform:uppercase}.scroll{overflow:auto}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(10,14,22,.97);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(6,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}nav button{background:transparent;border:0;color:#8190a4;padding:6px 1px;font-size:9px;font-weight:800}nav button span{display:block;font-size:19px;margin-bottom:2px}nav button.active{color:var(--cyan)}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);width:min(94vw,620px);max-height:88vh;overflow:auto;padding:0}dialog::backdrop{background:rgba(0,0,0,.72)}.modal{padding:15px}.modalFooter{display:flex;justify-content:flex-end;gap:8px;padding-top:12px}
+@media(max-width:620px){.two{grid-template-columns:1fr}}
+@media(min-width:850px){body{padding-bottom:0}.stats{grid-template-columns:repeat(4,1fr)}nav{position:sticky;top:76px;bottom:auto;max-width:1250px;margin:auto;border:1px solid var(--line);border-radius:14px;grid-template-columns:repeat(6,1fr);padding:6px}nav button{font-size:12px}nav button span{display:inline;margin-right:6px;font-size:16px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div><h1>🔥 ClassForge Rewards</h1><div class="tag">Rewards • 3D print shop • game engine</div></div><div class="row"><span id="saveState" class="saveState">✓ Saved</span><button class="btn secondary sm" id="studentMode">Student Shop</button></div></div></header>
+
+<nav>
+<button data-view="home" class="active"><span>🏠</span>Home</button>
+<button data-view="students"><span>👥</span>Students</button>
+<button data-view="shop"><span>🛍️</span>Shop</button>
+<button data-view="game"><span>🐲</span>Game</button>
+<button data-view="queue"><span>🖨️</span>Prints</button>
+<button data-view="more"><span>⚙️</span>More</button>
+</nav>
+
+<main>
+<section id="home" class="view active">
+<div id="stats" class="stats"></div>
+<div class="card"><div class="row between"><div><h2>Quick Award</h2><div class="muted small">Pick a reason, tap a student. XP also damages the active Boss.</div></div><select id="quickClass" style="width:auto;margin:0"></select></div><div id="quickRules" class="toolbar"></div><div id="quickStudents" class="students"></div></div>
+<div id="homeBoss"></div><div id="homeQuest"></div>
+</section>
+
+<section id="students" class="view">
+<div class="card"><div class="row between"><div><h2>Students</h2><div class="muted small">Credits, XP, wishlists, achievements and streaks are autosaved.</div></div><button class="btn sm" id="addStudent">+ Student</button></div><div id="studentTable" class="scroll"></div></div>
+</section>
+
+<section id="shop" class="view">
+<div class="card"><div class="row between"><div><h2>Reward Shop</h2><div class="muted small">Real photos, wishlists, print-on-demand and automatic cost guidance.</div></div><div class="row"><button class="btn sm" id="addMakerWorld">+ From MakerWorld</button><button class="btn secondary sm" id="addReward">+ Manual</button></div></div>
+<div class="toolbar"><button class="btn secondary sm filter active" data-filter="All">All</button><button class="btn secondary sm filter" data-filter="Flexi">Flexi</button><button class="btn secondary sm filter" data-filter="Fidget">Fidget</button><button class="btn secondary sm filter" data-filter="Custom">Custom</button><button class="btn secondary sm filter" data-filter="Legendary">Legendary</button><button class="btn secondary sm" id="refreshPhotos">↻ Photos</button></div>
+<div id="shopGrid" class="shop"></div></div>
+<div class="card"><h2>🔥 Shop Demand</h2><div class="muted small">Use this before printing inventory.</div><div id="demandTable" class="scroll"></div></div>
+</section>
+
+<section id="game" class="view">
+<div id="bossWrap"></div>
+<div class="card"><div class="row between"><div><h2>🎯 Quests</h2><div class="muted small">Classwide goals; teacher can advance or complete them.</div></div><button class="btn sm" id="addQuest">+ Quest</button></div><div id="questList"></div></div>
+<div class="card"><div class="row between"><div><h2>🏅 Achievements</h2><div class="muted small">Award permanent badges and optional bonus credits/XP.</div></div><button class="btn sm" id="awardAchievement">+ Award</button></div><div id="achievementList"></div></div>
+</section>
+
+<section id="queue" class="view">
+<div class="card"><div class="row between"><div><h2>Print Queue</h2><div class="muted small">Print-on-demand redemptions land here automatically.</div></div><button class="btn secondary sm" id="clearDelivered">Clear Delivered</button></div><div id="queueSummary" class="notice"></div><div id="queueList" class="scroll"></div></div>
+</section>
+
+<section id="more" class="view">
+<div class="card"><h2>Transaction Ledger</h2><input id="ledgerSearch" placeholder="Search student or reason"><div id="ledger" class="scroll"></div></div>
+<div class="card"><h2>Cost & Economy Settings</h2>
+<div class="grid two">
+<label>Filament $ / kg<input id="filamentKg" type="number" step=".01"></label>
+<label>Electricity $ / kWh<input id="electricKwh" type="number" step=".001"></label>
+<label>Printer average watts<input id="printerWatts" type="number" step="1"></label>
+<label>Machine cost $ / hour<input id="machineHourly" type="number" step=".01"></label>
+<label>Handling $ / print<input id="handlingCost" type="number" step=".01"></label>
+<label>Credits per $1 true cost<input id="fcPerDollar" type="number" step="1"></label>
+</div>
+<div class="muted small">Suggested FC = rounded-up true print cost × Credits per $1 cost. You can always override a reward's credit price.</div>
+</div>
+<div class="card"><h2>Settings & Data</h2><div class="notice privacy"><b>🔐 Autosave is ON</b><div class="small">Every app action writes to localStorage immediately and mirrors a snapshot to IndexedDB. Code updates do not intentionally overwrite classroom data.</div></div>
+<label>Teacher display name<input id="teacherName"></label><label>Credit name<input id="creditName"></label><label>Class XP goal<input id="goal" type="number"></label><label>Teacher PIN<input id="pin" inputmode="numeric" maxlength="8"></label>
+<div class="row"><button class="btn secondary" id="backup">Export Backup</button><label class="btn secondary" style="margin:0">Restore<input id="restore" type="file" accept=".json" style="display:none"></label><button class="btn ghost" id="forceUpdate">Check App Update</button></div>
+<div id="appVersion" class="muted small" style="margin-top:10px"></div>
+</div>
+</section>
+</main>
+
+<dialog id="modal"><form id="modalForm"><div class="modal" id="modalBody"></div></form></dialog>
+<dialog id="studentShopDialog"><div class="modal"><div class="row between"><h2>🛍️ Student Shop</h2><button class="btn secondary sm" onclick="document.getElementById('studentShopDialog').close()">Close</button></div><label>Student<select id="studentSelect"></select></label><div id="studentProfile"></div><div id="studentShopGrid" class="shop"></div></div></dialog>
+
+<script>
+const APP_VERSION="9.0.0";
+const DATA_KEY="classforge_phone_v3";
+const LEGACY_KEYS=["classforge_phone_v2","classforge_live_v1","classforge_v1"];
+const levels=["","Rookie","Builder","Maker","Crafter","Inventor","Engineer","Master","Legend"];
+const $=q=>document.querySelector(q), $$=q=>[...document.querySelectorAll(q)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=p=>p+Math.random().toString(36).slice(2,10);
+const lvl=x=>Math.max(1,Math.min(8,Math.floor((Number(x)||0)/250)+1));
+const prog=x=>lvl(x)>=8?100:Math.round(((Number(x)||0)%250)/250*100);
+
+const seedRewards=[
+{id:"mw-crystal-dragon",name:"Articulated Crystal Dragon",category:"Flexi",credits:180,stock:4,level:4,makerworld:"https://makerworld.com/en/models/55289-articulated-crystal-dragon-by-saber3d",imageLabel:"🐉",printMin:110,grams:45,material:"PLA",cost:.9,limited:true,customizable:true,pod:false,active:true},
+{id:"mw-water-dragon",name:"Water Dragon",category:"Flexi",credits:200,stock:3,level:5,makerworld:"https://makerworld.com/en/models/450835-water-dragon-articulated-dragon",imageLabel:"🐲",printMin:125,grams:52,material:"PLA",cost:1.04,limited:true,customizable:true,pod:false,active:true},
+{id:"mw-shark",name:"Articulated Shark",category:"Flexi",credits:90,stock:8,level:2,makerworld:"https://makerworld.com/en/models/463778-articulated-shark",imageLabel:"🦈",printMin:48,grams:21,material:"PLA",cost:.42,limited:false,customizable:true,pod:true,active:true},
+{id:"mw-gear-fidget",name:"Gear Fidget Toy",category:"Fidget",credits:75,stock:10,level:2,makerworld:"https://makerworld.com/en/models/95750-gear-fidget-toy-beveled-gears-fidget-spinner",imageLabel:"⚙️",printMin:35,grams:16,material:"PLA",cost:.32,limited:false,customizable:true,pod:true,active:true},
+{id:"custom-name",name:"Custom Name Tag",category:"Custom",credits:100,stock:99,level:2,makerworld:"",imageLabel:"🔤",printMin:42,grams:18,material:"PLA",cost:.36,limited:false,customizable:true,pod:true,active:true},
+{id:"maker-session",name:"Design With The Maker",category:"Legendary",credits:500,stock:2,level:8,makerworld:"",imageLabel:"🏆",printMin:180,grams:70,material:"PLA",cost:1.4,limited:true,customizable:true,pod:true,active:true}
+];
+
+function fresh(){
+ return {
+  schema:9,
+  settings:{teacherName:"Mrs. Murray",creditName:"Forge Credits",goal:20000,pin:"2468",filamentKg:20,electricKwh:.16,printerWatts:150,machineHourly:.35,handlingCost:.10,fcPerDollar:100},
+  classes:[{id:"6",name:"6th Grade"},{id:"7",name:"7th Grade"},{id:"8",name:"8th Grade"}],
+  rules:[{id:"ready",name:"Ready",c:2,x:5},{id:"work",name:"Work Done",c:5,x:10},{id:"effort",name:"Great Effort",c:5,x:10},{id:"help",name:"Helped Someone",c:5,x:15},{id:"behavior",name:"Great Behavior",c:5,x:10},{id:"improve",name:"Improvement",c:15,x:25},{id:"perfect",name:"Perfect Week",c:25,x:50}],
+  students:[{id:"a",name:"Jayden",classId:"7",c:185,x:1240,streak:4},{id:"b",name:"Mia",classId:"7",c:95,x:760,streak:3},{id:"c",name:"Chris",classId:"7",c:240,x:1480,streak:5},{id:"d",name:"Aaliyah",classId:"8",c:70,x:620,streak:2}],
+  rewards:seedRewards.map(x=>({...x})),queue:[],ledger:[],wishlists:{},
+  quests:[{id:"q1",title:"Locked In Week",description:"Turn in every assignment this week.",progress:0,target:5,credits:30,xp:50,active:true}],
+  achievements:[],
+  boss:{id:"boss1",name:"The Missing-Work Dragon",emoji:"🐲",maxHp:10000,hp:10000,rewardCredits:25,active:true,defeated:false}
+ }
+}
+function load(){
+ let d=null;
+ try{d=JSON.parse(localStorage.getItem(DATA_KEY)||"null")}catch(e){}
+ if(!d){for(const k of LEGACY_KEYS){try{d=JSON.parse(localStorage.getItem(k)||"null")}catch(e){} if(d)break}}
+ if(!d)d=fresh();
+ d.schema=9; d.settings={...fresh().settings,...(d.settings||{})};
+ d.classes=Array.isArray(d.classes)?d.classes:fresh().classes; d.rules=Array.isArray(d.rules)?d.rules:fresh().rules;
+ d.students=Array.isArray(d.students)?d.students:[]; d.rewards=Array.isArray(d.rewards)?d.rewards:[];
+ d.queue=Array.isArray(d.queue)?d.queue:[]; d.ledger=Array.isArray(d.ledger)?d.ledger:[];
+ d.wishlists=d.wishlists&&typeof d.wishlists==="object"?d.wishlists:{};
+ d.quests=Array.isArray(d.quests)?d.quests:(Array.isArray(d.challenges)?d.challenges.map(c=>({id:c.id||uid("q"),title:c.title,description:c.description||"",progress:0,target:1,credits:c.credits||0,xp:c.xp||0,active:c.active!==false})):fresh().quests);
+ d.achievements=Array.isArray(d.achievements)?d.achievements:[];
+ d.boss=d.boss||fresh().boss;
+ for(const r of seedRewards){if(!d.rewards.some(x=>x.id===r.id))d.rewards.push({...r})}
+ d.rewards.forEach(r=>{if(r.active===undefined)r.active=true;if(r.pod===undefined)r.pod=false;if(!r.category)r.category="Other";if(!r.material)r.material="PLA"});
+ return d;
+}
+let db=load();
+let currentClass=db.classes[1]?.id||db.classes[0]?.id,quickRule=db.rules[4]?.id||db.rules[0]?.id,filter="All";
+const st=id=>db.students.find(x=>x.id===id),rw=id=>db.rewards.find(x=>x.id===id),cl=id=>db.classes.find(x=>x.id===id);
+let saveTimer=null;
+
+function setSaveUI(saving){
+ const el=$("#saveState"); if(!el)return; el.textContent=saving?"… Saving":"✓ Saved";el.classList.toggle("saving",saving);
+}
+function idbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open("ClassForgeDB",1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("snapshots"))r.result.createObjectStore("snapshots")};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function mirrorIDB(){try{const idb=await idbOpen();const tx=idb.transaction("snapshots","readwrite");tx.objectStore("snapshots").put(JSON.parse(JSON.stringify(db)),"latest")}catch(e){}}
+function save(renderNow=true){
+ setSaveUI(true);
+ try{localStorage.setItem(DATA_KEY,JSON.stringify(db))}catch(e){}
+ clearTimeout(saveTimer);saveTimer=setTimeout(()=>{mirrorIDB();setSaveUI(false)},120);
+ if(renderNow)render();
+}
+async function restoreIDBIfNeeded(){if(localStorage.getItem(DATA_KEY))return;try{const idb=await idbOpen();const tx=idb.transaction("snapshots","readonly");const r=tx.objectStore("snapshots").get("latest");r.onsuccess=()=>{if(r.result){db=r.result;save()}}}catch(e){}}
+function log(sid,c,x,reason,type="award"){const s=st(sid);db.ledger.unshift({id:uid("l"),at:new Date().toISOString(),sid,name:s?.name||"Unknown",c:Number(c)||0,x:Number(x)||0,reason,type})}
+function damageBoss(xp){if(!db.boss?.active||db.boss.defeated)return;db.boss.hp=Math.max(0,Number(db.boss.hp||0)-Math.max(0,Number(xp)||0));if(db.boss.hp<=0){db.boss.defeated=true;db.boss.active=false;for(const s of db.students){s.c+=Number(db.boss.rewardCredits||0);log(s.id,Number(db.boss.rewardCredits||0),0,`Boss defeated: ${db.boss.name}`,"boss reward")}}}
+function award(id,rid){const s=st(id),r=db.rules.find(x=>x.id===rid);if(!s||!r)return;s.c+=r.c;s.x+=r.x;log(id,r.c,r.x,r.name);damageBoss(r.x);save()}
+function trueCost(p){const h=(Number(p.printMin)||0)/60;const material=(Number(p.grams)||0)/1000*(Number(db.settings.filamentKg)||0);const electric=h*((Number(db.settings.printerWatts)||0)/1000)*(Number(db.settings.electricKwh)||0);const machine=h*(Number(db.settings.machineHourly)||0);return material+electric+machine+(Number(db.settings.handlingCost)||0)}
+function suggestedFC(p){const raw=trueCost(p)*(Number(db.settings.fcPerDollar)||100);return Math.max(5,Math.ceil(raw/5)*5)}
+function wishCount(rid){return Object.values(db.wishlists).filter(arr=>Array.isArray(arr)&&arr.includes(rid)).length}
+function toggleWish(sid,rid){const arr=db.wishlists[sid]||(db.wishlists[sid]=[]);const i=arr.indexOf(rid);if(i>=0)arr.splice(i,1);else arr.push(rid);save(false);renderStudentShop();renderShop();renderDemand()}
+function isWished(sid,rid){return (db.wishlists[sid]||[]).includes(rid)}
+
+function nav(v){$$(".view").forEach(x=>x.classList.toggle("active",x.id===v));$$("nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===v));scrollTo(0,0)}
+$$("nav button").forEach(b=>b.onclick=()=>nav(b.dataset.view));
+
+function imageMarkup(p){if(p.imageUrl)return `<img src="${esc(p.imageUrl)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="fallbackIcon" style="display:none;width:100%;height:100%;align-items:center;justify-content:center">${esc(p.imageLabel||"🎁")}</div>`;return `<div class="fallbackIcon">${esc(p.imageLabel||"🎁")}</div>`}
+function modelId(url){try{return new URL(url).pathname.match(/\/models\/(\d+)/)?.[1]||""}catch(e){return""}}
+function validMW(url){try{const u=new URL(url);return /(^|\.)makerworld\.com$/i.test(u.hostname)&&/\/models\/\d+/.test(u.pathname)}catch(e){return false}}
+async function fetchMeta(url){const ep="https://api.microlink.io/?url="+encodeURIComponent(url)+"&meta=true&screenshot=false&video=false&audio=false&iframe=false";const r=await fetch(ep,{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();return j.data||{}}
+function metaImage(m){return m?.image?.url||(typeof m?.image==="string"?m.image:"")||""}
+async function resolvePhoto(p){if(!p?.makerworld||!validMW(p.makerworld))return;try{const m=await fetchMeta(p.makerworld);const im=metaImage(m);if(im)p.imageUrl=im;if(m.title&&(!p.name||p.name==="MakerWorld Reward"))p.name=String(m.title).replace(/\s*[-|]\s*MakerWorld.*$/i,"").trim();save(false);renderShop();if($("#studentShopDialog").open)renderStudentShop()}catch(e){}}
+async function resolveMissingPhotos(force=false){for(const p of db.rewards){if(p.makerworld&&(force||!p.imageUrl))await resolvePhoto(p)}}
+
+function renderStats(){const waiting=db.queue.filter(q=>q.status!=="Delivered").length;$("#stats").innerHTML=[["Students",db.students.length],["Credits",db.students.reduce((a,s)=>a+s.c,0)],["Wishlists",Object.values(db.wishlists).reduce((a,x)=>a+(x?.length||0),0)],["Prints Waiting",waiting]].map(([k,v])=>`<div class=stat><span class=muted>${esc(k)}</span><b>${Number(v).toLocaleString()}</b></div>`).join("")}
+function studentCard(s){return `<div class=student><div class="row between"><h3>${esc(s.name)}</h3><span class=pill>Lv ${lvl(s.x)}</span></div><div class=balance>💰 ${s.c}</div><div class=bar><i style="width:${prog(s.x)}%"></i></div><div class="small muted">${s.x} XP • 🔥 ${s.streak||0} • ❤️ ${(db.wishlists[s.id]||[]).length}</div><button class="btn sm oneAward" data-id="${s.id}" style="width:100%;margin-top:8px">Award ${esc(db.rules.find(r=>r.id===quickRule)?.name||"")}</button></div>`}
+function renderHome(){renderStats();$("#quickClass").innerHTML=db.classes.map(c=>`<option value="${c.id}" ${c.id===currentClass?"selected":""}>${esc(c.name)}</option>`).join("");$("#quickRules").innerHTML=db.rules.map(r=>`<button class="btn sm ${r.id===quickRule?"":"secondary"}" data-rule="${r.id}">+${r.c} ${esc(r.name)}</button>`).join("");$("#quickStudents").innerHTML=db.students.filter(s=>s.classId===currentClass).map(studentCard).join("")||`<div class=muted>No students here.</div>`;$("#homeBoss").innerHTML=db.boss&&!db.boss.defeated?bossCard(true):"";const q=db.quests.find(x=>x.active);$("#homeQuest").innerHTML=q?`<div class="card quest"><h3>🎯 ${esc(q.title)}</h3><div>${esc(q.description)}</div><div class=bar><i style="width:${Math.min(100,(q.progress/q.target)*100)}%"></i></div><div class="small muted">${q.progress}/${q.target} • +${q.credits} FC • +${q.xp} XP</div></div>`:"";$$("[data-rule]").forEach(b=>b.onclick=()=>{quickRule=b.dataset.rule;renderHome()});$$(".oneAward").forEach(b=>b.onclick=()=>award(b.dataset.id,quickRule))}
+function renderStudents(){$("#studentTable").innerHTML=`<table><thead><tr><th>Student</th><th>Class</th><th>Credits</th><th>XP / Level</th><th>Wishlist</th><th>Badges</th><th></th></tr></thead><tbody>${db.students.map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${esc(cl(s.classId)?.name||"")}</td><td>${s.c}</td><td>${s.x} / Lv ${lvl(s.x)}</td><td>${(db.wishlists[s.id]||[]).length}</td><td>${db.achievements.filter(a=>a.sid===s.id).length}</td><td><button class="btn secondary sm editStudent" data-id="${s.id}">Edit</button></td></tr>`).join("")}</tbody></table>`;$$(".editStudent").forEach(b=>b.onclick=()=>editStudent(b.dataset.id))}
+function rewardCard(p){const w=wishCount(p.id),cost=trueCost(p),suggest=suggestedFC(p);return `<div class=reward>${p.limited?'<div class="badge right">LIMITED</div>':p.pod?'<div class="badge pod">PRINT ON DEMAND</div>':""}${w>=2?'<div class="badge hot">🔥 '+w+' wishlists</div>':""}<div class=rewardHero>${imageMarkup(p)}</div><div class=rewardBody><div class="small muted">${esc(p.category)}</div><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class=pills><span class=pill>Lv ${p.level}+</span><span class="pill good">❤️ ${w}</span>${p.pod?'<span class="pill violet">POD</span>':`<span class="pill good">${p.stock} stock</span>`}</div><div class="small muted" style="margin:8px 0">${p.printMin||0}m • ${p.grams||0}g • true cost $${cost.toFixed(2)} • suggested ${suggest} FC</div>${p.makerworld?`<a class=mw href="${esc(p.makerworld)}" target=_blank rel=noopener>Model Details</a>`:""}<div class=row style="margin-top:8px"><button class="btn secondary sm editReward" data-id="${p.id}">Edit</button><button class="btn ghost sm giveFree" data-id="${p.id}">Give</button></div></div></div>`}
+function renderShop(){const arr=db.rewards.filter(p=>p.active&&(filter==="All"||p.category===filter));$("#shopGrid").innerHTML=arr.map(rewardCard).join("");$$(".editReward").forEach(b=>b.onclick=()=>editReward(b.dataset.id));$$(".giveFree").forEach(b=>b.onclick=()=>giveRewardFree(b.dataset.id));renderDemand()}
+function renderDemand(){const rows=db.rewards.map(p=>({p,w:wishCount(p.id),q:db.queue.filter(x=>x.rewardId===p.id&&x.status!=="Delivered").length})).sort((a,b)=>(b.w+b.q)-(a.w+a.q));$("#demandTable").innerHTML=`<table><thead><tr><th>Reward</th><th>Wishlists</th><th>Waiting</th><th>Mode</th><th>True Cost</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${esc(x.p.name)}</td><td>❤️ ${x.w}</td><td>${x.q}</td><td>${x.p.pod?"POD":"Stock"}</td><td>$${trueCost(x.p).toFixed(2)}</td></tr>`).join("")}</tbody></table>`}
+function bossCard(compact=false){const b=db.boss,pct=b.maxHp?Math.max(0,Math.min(100,b.hp/b.maxHp*100)):0;return `<div class="card boss"><div class="row between"><div><h2>${b.emoji||"🐲"} ${esc(b.name)}</h2><div class="small muted">${compact?"Every XP point damages the Boss.":"Classwide Boss Battle — every XP point awarded deals 1 damage."}</div></div>${compact?"":'<button class="btn secondary sm" id="editBoss">Edit Boss</button>'}</div><div class=bossHP><i style="width:${pct}%"></i></div><div class="row between"><span class=bossNumber>${Number(b.hp).toLocaleString()} HP</span><span>Victory: +${b.rewardCredits} FC to every student</span></div></div>`}
+function renderGame(){$("#bossWrap").innerHTML=db.boss?.defeated?`<div class="card boss"><h2>🏆 Boss Defeated!</h2><button class="btn sm" id="newBoss">Start New Boss</button></div>`:bossCard(false);$("#questList").innerHTML=db.quests.map(q=>`<div class="notice quest"><div class="row between"><b>${esc(q.title)}</b><span class=pill>${q.active?"ACTIVE":"PAUSED"}</span></div><div>${esc(q.description)}</div><div class=bar><i style="width:${Math.min(100,(q.progress/q.target)*100)}%"></i></div><div class="row between"><span class="small muted">${q.progress}/${q.target} • +${q.credits} FC • +${q.xp} XP</span><div class=row><button class="btn ghost sm questPlus" data-id="${q.id}">+1</button><button class="btn secondary sm questToggle" data-id="${q.id}">${q.active?"Pause":"Activate"}</button></div></div></div>`).join("");$("#achievementList").innerHTML=db.achievements.slice().reverse().map(a=>`<div class="notice achievement"><b>🏅 ${esc(a.title)}</b><div>${esc(a.studentName)} • ${new Date(a.at).toLocaleDateString()}</div></div>`).join("")||`<div class=muted>No achievements awarded yet.</div>`;$("#editBoss")?.addEventListener("click",editBoss);$("#newBoss")?.addEventListener("click",editBoss);$$(".questPlus").forEach(b=>b.onclick=()=>advanceQuest(b.dataset.id));$$(".questToggle").forEach(b=>b.onclick=()=>{const q=db.quests.find(x=>x.id===b.dataset.id);q.active=!q.active;save()})}
+function advanceQuest(id){const q=db.quests.find(x=>x.id===id);if(!q)return;q.progress=Math.min(q.target,q.progress+1);if(q.progress>=q.target&&q.active){q.active=false;for(const s of db.students){s.c+=q.credits;s.x+=q.xp;log(s.id,q.credits,q.xp,`Quest complete: ${q.title}`,"quest");damageBoss(q.xp)}}save()}
+function renderQueue(){const live=db.queue.filter(q=>q.status!=="Delivered");const grouped={};for(const q of live){const k=q.reward||"Unknown";grouped[k]=(grouped[k]||0)+1}$("#queueSummary").innerHTML=live.length?`<b>${live.length} waiting:</b> ${Object.entries(grouped).map(([k,v])=>`${v}× ${esc(k)}`).join(" • ")}`:"Nothing waiting to print.";$("#queueList").innerHTML=db.queue.length?`<table><thead><tr><th>Student</th><th>Reward</th><th>Options</th><th>Status</th></tr></thead><tbody>${db.queue.slice().reverse().map(q=>`<tr><td>${esc(q.student)}</td><td>${esc(q.reward)}</td><td>${esc(q.custom||"—")}</td><td><select class=qstatus data-id="${q.id}">${["Queued","Printing","Ready","Delivered"].map(x=>`<option ${x===q.status?"selected":""}>${x}</option>`).join("")}</select></td></tr>`).join("")}</tbody></table>`:`<div class=muted>No print orders.</div>`;$$(".qstatus").forEach(x=>x.onchange=()=>{db.queue.find(q=>q.id===x.dataset.id).status=x.value;save()})}
+function renderLedger(){const q=($("#ledgerSearch").value||"").toLowerCase(),arr=db.ledger.filter(x=>JSON.stringify(x).toLowerCase().includes(q));$("#ledger").innerHTML=arr.length?`<table><thead><tr><th>Date</th><th>Student</th><th>Credits</th><th>XP</th><th>Reason</th></tr></thead><tbody>${arr.map(x=>`<tr><td>${new Date(x.at).toLocaleDateString()}</td><td>${esc(x.name)}</td><td>${x.c>0?"+":""}${x.c}</td><td>${x.x>0?"+":""}${x.x}</td><td>${esc(x.reason)}</td></tr>`).join("")}</tbody></table>`:`<div class=muted>No transactions yet.</div>`}
+function renderSettings(){const s=db.settings;for(const [id,key] of [["teacherName","teacherName"],["creditName","creditName"],["goal","goal"],["pin","pin"],["filamentKg","filamentKg"],["electricKwh","electricKwh"],["printerWatts","printerWatts"],["machineHourly","machineHourly"],["handlingCost","handlingCost"],["fcPerDollar","fcPerDollar"]]){$("#"+id).value=s[key]??""}$("#appVersion").textContent=`ClassForge v${APP_VERSION} • data schema ${db.schema||9}`}
+
+function render(){renderHome();renderStudents();renderShop();renderGame();renderQueue();renderLedger();renderSettings();fillStudentSelect()}
+
+function openForm(title,body,saveText,onSave){$("#modalBody").innerHTML=`<h2>${esc(title)}</h2>${body}<div class=modalFooter><button type=button class="btn secondary" id=cancelModal>Cancel</button><button class=btn type=submit>${esc(saveText||"Save")}</button></div>`;$("#cancelModal").onclick=()=>$("#modal").close();$("#modalForm").onsubmit=e=>{e.preventDefault();if(onSave(new FormData(e.target))!==false)$("#modal").close()};$("#modal").showModal()}
+function addStudent(){openForm("Add Student",`<label>Display name<input name=name required></label><label>Class<select name=classId>${db.classes.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("")}</select></label>`,"Add",fd=>{db.students.push({id:uid("s"),name:fd.get("name"),classId:fd.get("classId"),c:0,x:0,streak:0});save()})}
+function editStudent(id){const s=st(id);openForm("Edit Student",`<label>Name<input name=name value="${esc(s.name)}"></label><label>Class<select name=classId>${db.classes.map(c=>`<option value="${c.id}" ${c.id===s.classId?"selected":""}>${esc(c.name)}</option>`).join("")}</select></label><label>Credits<input name=c type=number value="${s.c}"></label><label>XP<input name=x type=number value="${s.x}"></label><label>Streak<input name=streak type=number value="${s.streak||0}"></label>`,"Save",fd=>{Object.assign(s,{name:fd.get("name"),classId:fd.get("classId"),c:Number(fd.get("c")||0),x:Number(fd.get("x")||0),streak:Number(fd.get("streak")||0)});save()})}
+function rewardForm(p={}){return `<label>Name<input name=name value="${esc(p.name||"")}" required></label><label>Category<select name=category>${["Flexi","Fidget","Custom","Legendary","Other"].map(x=>`<option ${p.category===x?"selected":""}>${x}</option>`).join("")}</select></label><label>MakerWorld URL<input name=makerworld value="${esc(p.makerworld||"")}"></label><label>Image URL<input name=imageUrl value="${esc(p.imageUrl||"")}"></label><div class="grid two"><label>Credit price<input name=credits type=number value="${p.credits??50}"></label><label>Minimum level<input name=level type=number min=1 max=8 value="${p.level??1}"></label><label>Print minutes<input name=printMin type=number value="${p.printMin??30}"></label><label>Grams<input name=grams type=number value="${p.grams??10}"></label><label>Stock<input name=stock type=number value="${p.stock??5}"></label><label>Fallback icon<input name=imageLabel value="${esc(p.imageLabel||"🎁")}"></label></div><div class=notice><b>Calculated true cost:</b> $${trueCost(p).toFixed(2)} • suggested ${suggestedFC(p)} FC</div><label><input type=checkbox name=pod ${p.pod?"checked":""}> Print on demand (no stock limit)</label><label><input type=checkbox name=customizable ${p.customizable?"checked":""}> Customizable</label><label><input type=checkbox name=limited ${p.limited?"checked":""}> Limited drop</label><label><input type=checkbox name=active ${p.active!==false?"checked":""}> Active</label>`}
+function rewardFields(fd){return {name:fd.get("name"),category:fd.get("category"),makerworld:String(fd.get("makerworld")||"").trim(),imageUrl:String(fd.get("imageUrl")||"").trim(),credits:Number(fd.get("credits")||0),level:Number(fd.get("level")||1),printMin:Number(fd.get("printMin")||0),grams:Number(fd.get("grams")||0),stock:Number(fd.get("stock")||0),imageLabel:fd.get("imageLabel")||"🎁",material:"PLA",pod:!!fd.get("pod"),customizable:!!fd.get("customizable"),limited:!!fd.get("limited"),active:!!fd.get("active")}}
+async function addFromMakerWorld(){openForm("Add From MakerWorld",`<label>MakerWorld URL<input name=url required placeholder="https://makerworld.com/models/..."></label><label>Credit price<input name=credits type=number value=75></label><label>Minimum level<input name=level type=number min=1 max=8 value=1></label>`,"Fetch",fd=>{const url=String(fd.get("url")||"").trim();if(!validMW(url)){alert("Paste a valid MakerWorld model URL.");return false}$("#modal").close();setTimeout(async()=>{let meta={};try{meta=await fetchMeta(url)}catch(e){}const title=String(meta.title||"MakerWorld Reward").replace(/\s*[-|]\s*MakerWorld.*$/i,"").trim();const draft={name:title,category:"Other",makerworld:url,imageUrl:metaImage(meta),credits:Number(fd.get("credits")||75),level:Number(fd.get("level")||1),printMin:30,grams:10,stock:5,imageLabel:"🎁",pod:true,customizable:true,limited:false,active:true};openForm("Finish Reward",rewardForm(draft),"Add To Shop",fd2=>{const p={id:uid("r"),...rewardFields(fd2)};db.rewards.push(p);save();if(p.makerworld&&!p.imageUrl)resolvePhoto(p)})},80);return false})}
+function addReward(){openForm("Add Reward",rewardForm(),"Add",fd=>{db.rewards.push({id:uid("r"),...rewardFields(fd)});save()})}
+function editReward(id){const p=rw(id);openForm("Edit Reward",rewardForm(p),"Save",fd=>{Object.assign(p,rewardFields(fd));save();if(p.makerworld&&!p.imageUrl)resolvePhoto(p)})}
+function giveRewardFree(rid){const p=rw(rid);openForm("Give Reward",`<label>Student<select name=sid>${db.students.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select></label><label>Customization<input name=custom placeholder="colors/name/etc"></label>`,"Queue",fd=>{const s=st(fd.get("sid"));if(!p.pod&&p.stock>0)p.stock--;db.queue.push({id:uid("q"),studentId:s.id,student:s.name,rewardId:p.id,reward:p.name,custom:fd.get("custom")||"",status:"Queued",at:new Date().toISOString()});log(s.id,0,0,`Teacher reward: ${p.name}`,"teacher reward");save()})}
+function redeem(sid,rid){const s=st(sid),p=rw(rid);if(!s||!p||s.c<p.credits||lvl(s.x)<p.level||(!p.pod&&p.stock<=0))return;const custom=p.customizable?(prompt("Colors / name / customization:","")||""):"";if(!confirm(`Redeem ${p.name} for ${p.credits} credits?`))return;s.c-=p.credits;if(!p.pod&&p.stock<99)p.stock--;db.queue.push({id:uid("q"),studentId:s.id,student:s.name,rewardId:p.id,reward:p.name,custom,status:"Queued",at:new Date().toISOString()});log(s.id,-p.credits,0,`Redeemed: ${p.name}`,"redemption");save();renderStudentShop()}
+function fillStudentSelect(){$("#studentSelect").innerHTML=db.students.map(s=>`<option value="${s.id}">${esc(s.name)} — ${esc(cl(s.classId)?.name||"")}</option>`).join("")}
+function renderStudentShop(){const s=st($("#studentSelect").value||db.students[0]?.id);if(!s)return;$("#studentProfile").innerHTML=`<div class=notice><b style="font-size:22px">${esc(s.name)} • Lv ${lvl(s.x)} ${levels[lvl(s.x)]}</b><div class=price>💰 ${s.c} ${esc(db.settings.creditName)}</div><div class=bar><i style="width:${prog(s.x)}%"></i></div><div class="small muted">${s.x} XP • ❤️ ${(db.wishlists[s.id]||[]).length} saved</div></div>`;$("#studentShopGrid").innerHTML=db.rewards.filter(p=>p.active).map(p=>{const locked=lvl(s.x)<p.level,poor=s.c<p.credits,sold=!p.pod&&p.stock<=0,w=isWished(s.id,p.id);return `<div class=reward>${p.pod?'<div class="badge pod">PRINT ON DEMAND</div>':""}<div class=rewardHero>${imageMarkup(p)}</div><div class=rewardBody><h3>${esc(p.name)}</h3><div class=price>💰 ${p.credits}</div><div class=row><button class="btn ${w?"":"secondary"} sm wishBtn" data-id="${p.id}">${w?"❤️ Wishlisted":"♡ Wishlist"}</button><button class=btn data-buy="${p.id}" ${locked||poor||sold?"disabled":""}>${sold?"Sold Out":locked?"Locked":poor?"Save For It":"Redeem"}</button></div></div></div>`}).join("");$$(".wishBtn").forEach(b=>b.onclick=()=>toggleWish(s.id,b.dataset.id));$$("[data-buy]").forEach(b=>b.onclick=()=>redeem(s.id,b.dataset.id))}
+function addQuest(){openForm("New Quest",`<label>Title<input name=title required></label><label>Description<textarea name=description></textarea></label><label>Target count<input name=target type=number value=5></label><label>Class bonus credits<input name=credits type=number value=20></label><label>Class bonus XP<input name=xp type=number value=30></label>`,"Add",fd=>{db.quests.push({id:uid("q"),title:fd.get("title"),description:fd.get("description"),progress:0,target:Number(fd.get("target")||1),credits:Number(fd.get("credits")||0),xp:Number(fd.get("xp")||0),active:true});save()})}
+function editBoss(){const b=db.boss||fresh().boss;openForm("Boss Battle",`<label>Boss name<input name=name value="${esc(b.name||"")}"></label><label>Emoji<input name=emoji value="${esc(b.emoji||"🐲")}"></label><label>Max HP<input name=maxHp type=number value="${b.maxHp||10000}"></label><label>Victory credits / student<input name=rewardCredits type=number value="${b.rewardCredits||25}"></label>`,"Start Boss",fd=>{db.boss={id:uid("boss"),name:fd.get("name"),emoji:fd.get("emoji")||"🐲",maxHp:Number(fd.get("maxHp")||10000),hp:Number(fd.get("maxHp")||10000),rewardCredits:Number(fd.get("rewardCredits")||0),active:true,defeated:false};save()})}
+function awardAchievement(){openForm("Award Achievement",`<label>Student<select name=sid>${db.students.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join("")}</select></label><label>Achievement<select name=title><option>🔥 On Fire</option><option>🧠 Locked In</option><option>🤝 Helping Hand</option><option>📈 Comeback</option><option>💯 Perfect Week</option><option>🏆 MVP</option><option>⭐ Legend Moment</option></select></label><label>Bonus credits<input name=c type=number value=10></label><label>Bonus XP<input name=x type=number value=20></label>`,"Award",fd=>{const s=st(fd.get("sid")),c=Number(fd.get("c")||0),x=Number(fd.get("x")||0);s.c+=c;s.x+=x;db.achievements.push({id:uid("a"),sid:s.id,studentName:s.name,title:fd.get("title"),at:new Date().toISOString()});log(s.id,c,x,`Achievement: ${fd.get("title")}`,"achievement");damageBoss(x);save()})}
+
+$("#quickClass").onchange=e=>{currentClass=e.target.value;renderHome()};
+$("#addStudent").onclick=addStudent;$("#addMakerWorld").onclick=addFromMakerWorld;$("#addReward").onclick=addReward;$("#addQuest").onclick=addQuest;$("#awardAchievement").onclick=awardAchievement;
+$("#studentMode").onclick=()=>{$("#studentShopDialog").showModal();fillStudentSelect();renderStudentShop()};$("#studentSelect").onchange=renderStudentShop;
+$("#clearDelivered").onclick=()=>{db.queue=db.queue.filter(q=>q.status!=="Delivered");save()};$("#ledgerSearch").oninput=renderLedger;$("#refreshPhotos").onclick=()=>resolveMissingPhotos(true);
+$$(".filter").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;$$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderShop()});
+
+const settingsMap={teacherName:"teacherName",creditName:"creditName",goal:"goal",pin:"pin",filamentKg:"filamentKg",electricKwh:"electricKwh",printerWatts:"printerWatts",machineHourly:"machineHourly",handlingCost:"handlingCost",fcPerDollar:"fcPerDollar"};
+for(const [id,key] of Object.entries(settingsMap)){const el=$("#"+id);el.addEventListener("change",()=>{db.settings[key]=el.type==="number"?Number(el.value||0):el.value;save()});}
+$("#backup").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:"application/json"}));a.download="ClassForge-backup-"+new Date().toISOString().slice(0,10)+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$("#restore").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();alert("Backup restored.")}catch(err){alert("Invalid ClassForge backup.")}};r.readAsText(f)};
+$("#forceUpdate").onclick=async()=>{if("serviceWorker"in navigator){const r=await navigator.serviceWorker.getRegistration();if(r){await r.update();alert("Update check complete. If a new ClassForge build is available it will activate automatically.")}else alert("Service worker is not installed yet.")}};
+
+save(false);render();restoreIDBIfNeeded();setTimeout(()=>resolveMissingPhotos(false),700);
+
+// PWA updater: same Home Screen icon, new code.
+if("serviceWorker" in navigator){
+ window.addEventListener("load",async()=>{
+  try{
+   const reg=await navigator.serviceWorker.register("./sw.js",{updateViaCache:"none"});
+   await reg.update();
+   let reloading=false;
+   navigator.serviceWorker.addEventListener("controllerchange",()=>{
+    if(reloading)return;reloading=true;location.reload();
+   });
+  }catch(e){}
+ });
+}
+</script>
+</body></html>
